@@ -6,6 +6,7 @@ import { PostUser } from './project.js'
 import $ from 'jquery'
 
 $(document).ready(function () {
+  getQuestions();
     $("#tester").click(function (event) {
         event.preventDefault();
         GetUsers();
@@ -27,7 +28,35 @@ $(document).ready(function () {
         postUser(naMe, last, Uname, passWord);
     })
 })
+function getQuestions(){
+    test().then(getQuestionSuccess,getQuestionFailure);
+    
+}
 
+function test(){
+  var apicall = new AllQuestions();
+  let promise = apicall.getAllQuestions();
+  
+  return promise;
+  
+}
+
+function getQuestionSuccess(response) {
+  console.log(JSON.parse(response))
+  const question = JSON.parse(response);
+  
+  
+ 
+  question.forEach(function(description){
+     $(".form-box").append("<li>" + description.questionDescription + "</li>");   
+  })
+
+
+}
+
+function getQuestionFailure(response) {
+  alert(response)
+}
 //getting new User
 function GetUsers() {
     getAllUsers().then(success, failure);
@@ -73,3 +102,4 @@ function postedSuccess(response) {
 function postFailure(response) {
     alert(response)
 }
+
