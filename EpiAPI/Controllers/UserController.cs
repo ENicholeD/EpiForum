@@ -12,12 +12,12 @@ namespace MessageBoard.Controllers
     // [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private IUserService _userService;
         private readonly EpiAPIContext _db;
 
-        public UsersController(IUserService userService, EpiAPIContext db)
+        public UserController(IUserService userService, EpiAPIContext db)
         {
             _userService = userService;
             _db = db;
@@ -30,6 +30,12 @@ namespace MessageBoard.Controllers
             return Ok(users);
         }
 
+      [HttpPost]
+        public void Post([FromBody] User newUser)
+        {
+            _db.Users.Add(newUser);
+            _db.SaveChanges();
+        }
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]User userParam)

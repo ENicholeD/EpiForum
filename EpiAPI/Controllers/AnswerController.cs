@@ -13,27 +13,27 @@ namespace EpiAPI.Controllers
     // [Authorize]
    [Route("api/[controller]")]
     [ApiController]
-    public class QuestionController : ControllerBase
+    public class AnswerController : ControllerBase
     {
         private IUserService _userService;
         private readonly EpiAPIContext _db;
 
-        public QuestionController(IUserService userService, EpiAPIContext db)
+        public AnswerController(IUserService userService, EpiAPIContext db)
         {
             _userService = userService;
             _db = db;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Question>> GetAll()
+        public ActionResult<IEnumerable<Answer>> GetAll()
         {
-            var questions = _db.Questions.AsQueryable();
-            return questions.ToList();
+            var answer = _db.Answers.AsQueryable();
+            return answer.ToList();
         }
         [HttpPost]
-        public void Post([FromBody] Question newQuestion)
+        public void Post([FromBody] Answer newAnswer)
         {
-            _db.Questions.Add(newQuestion);
+            _db.Answers.Add(newAnswer);
             _db.SaveChanges();
         }
     }
