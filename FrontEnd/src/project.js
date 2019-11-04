@@ -56,7 +56,7 @@ export class AuthenticateUser {
     getAllQuestions(){
         return new Promise(function(resolve,reject){
             let request = new XMLHttpRequest();
-            const url = `http://localhost:4000/api/questions`
+            const url = `http://localhost:4000/api/question`
             console.log(url);
             console.log(request);
 
