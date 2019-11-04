@@ -26,7 +26,7 @@ namespace MessageBoard.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetAll()
         {
-            var users = _db.Users.AsQueryable();
+            var users = _db.Users.Include(u => u.Questions).ThenInclude(u => u.Answers).AsQueryable();
             return Ok(users);
         }
 
