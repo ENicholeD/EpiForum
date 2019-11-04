@@ -15,6 +15,5 @@ namespace EpiAPI.Models
         {
             this.Answers = new HashSet<Answer>();
         }
-        
     }
 }
