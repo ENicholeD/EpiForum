@@ -84,7 +84,7 @@ export class AuthenticateUser {
     postQuestion(questionDescription){
         return new Promise(function(resolve,reject){
             let request = new XMLHttpRequest();
-            const url = `http://localhost:4000/api/questions`
+            const url = `http://localhost:4000/api/question`
             console.log(url);
             console.log(request);
 
@@ -92,9 +92,14 @@ export class AuthenticateUser {
                 //       console.log("request");
                 //     reject(Error(request.statusText));
                 //   }
+                var parameters = {
+                  "QuestionDescription": questionDescription,
+                  "UserID": 1
+                };
+                console.log(parameters);
                 request.open("POST", url);
                 request.setRequestHeader("Content-Type", "application/json")
-                request.send()
+                request.send(JSON.stringify(parameters))
                 request.onreadystatechange = function(){
                     console.log(this.readyState);
                     if(this.readyState == 4 && this.status === 200){
@@ -107,4 +112,41 @@ export class AuthenticateUser {
         })
     }
   }
+
+  export class PostUser{
+    postUser(naMe, last, Uname, passWord){
+        return new Promise(function(resolve,reject){
+            let request = new XMLHttpRequest();
+            const url = `http://localhost:4000/user`
+            console.log(url);
+            console.log(request);
+
+                //    else {
+                //       console.log("request");
+                //     reject(Error(request.statusText));
+                //   }
+                var parameters = {
+                 "FirstName": naMe, 
+                 "LastName" :last, 
+                 "Username": Uname, 
+                 "Password": passWord
+                };
+                console.log(parameters);
+                request.open("POST", url);
+                request.setRequestHeader("Content-Type", "application/json")
+                request.send(JSON.stringify(parameters))
+                request.onreadystatechange = function(){
+                    console.log(this.readyState);
+                    if(this.readyState == 4 && this.status === 200){
+
+                        resolve(request.response);
+                      }
+
+                console.log("success in call forrestaraunt");
+            }
+        })
+    }
+  }
+  
+
   
