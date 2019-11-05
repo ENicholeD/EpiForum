@@ -27,7 +27,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'login.html',
-      template: 'src/login.html',
+      template: './src/login.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'question.html',
+      template: './src/question.html',
       chunks: ['main']
     }),
     new HtmlWebpackPlugin({

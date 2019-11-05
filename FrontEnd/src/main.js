@@ -3,6 +3,7 @@ import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
+import { GetSpecificQ} from './project.js'
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,8 +40,13 @@ $(document).ready(function () {
         console.log(password);
         authenticate(username, password);
     })
+    $("#logout").click(function(event){
+        logout();
+    })
 })
+
 function authenticate(username, password) {
+
     authenticate2nd(username, password).then(loginsucces, loginfailure)
 }
 function authenticate2nd(username, password) {
@@ -74,21 +80,56 @@ function test() {
 }
 
 function getQuestionSuccess(response) {
-    console.log(JSON.parse(response));
-    const question = JSON.parse(response);
-    console.log(question[0].userID)
+  console.log(JSON.parse(response));
+  const question = JSON.parse(response);
+  console.log(question[0].userID)
+  $(".form-box").empty();
+  
+// passed in question id
+    
+  question.forEach(function(description){
+    var buttonHTML= "<button id=" + description.id + ">clickme</button>"
+    console.log(description.user.username);
+     $(".form-box").append("<li>" + description.questionDescription + "</li>" + description.user.username + buttonHTML);
+     
+     
+    //  document.getElementById("getspecificdetails").addEventListener("click", function(){
+    //      console.log("it got here");
+    //     (description.ID);
+    //   });
+    $("#" + description.id).click(function(){
+        console.log(this);
+        getSpecificDetails(this.id)
+        })
+  })
 
 
-
-    question.forEach(function (description) {
-
-        $(".form-box").append("<li>" + description.questionDescription + "</li>" + "<br>" + '<button>' + description.id + "</button>");
-
-    })
-
-
+//   "<button id=getspecificdetails" + "(" + description.id + ")>" + "</buttton>");
 }
 
+function getSpecificDetails(id)
+{
+    gSQ(id);
+    console.log(id);
+}
+function gSQ(id)
+{
+    gsQ2(id).then(detailsucces, detailfailure)
+}
+function gsQ2(id)
+{
+    var apicall = new GetSpecificQ();
+    let promise = apicall.getSpecificQuestion(id);
+    return promise;
+}
+function detailsucces(response) {
+    console.log(response);
+    window.location.href = "question.html";
+    $('body').append("<li> +it worked  </li>");
+  }
+function detailfailure(response) {
+    alert(response)
+  }
 function getQuestionFailure(response) {
     alert(response)
 }
@@ -130,11 +171,18 @@ function apiCallPostQuestion(questionDescription, jsonToken) {
     return promise;
 }
 function postedSuccess(response) {
-    console.log(response);
-    // const postedQuestion = JSON.parse(response);
-    $("body").append("<li>" + response[0].description);
+   getQuestions();
 }
 function postFailure(response) {
     alert(response)
 }
+function logout()
+{
+    console.log("it got here")
+    localStorage.removeItem('jsonToken');
+}
 
+// this will be for loading the user page when a user first gets logged in.
+// $('userhtml').ready(function(){
+    
+// })

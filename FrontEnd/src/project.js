@@ -149,6 +149,67 @@ export class AuthenticateUser {
         })
     }
   }
+  export class GetSpecificQ{
+    getSpecificQuestion(questionID){
+      console.log("this is the question id from the api" + questionID);
+        return new Promise(function(resolve,reject){
+            let request = new XMLHttpRequest();
+            const url = `http://localhost:4000/api/question/${questionID}`;
+            console.log(url);
+            console.log(request);
+
+                //    else {
+                //       console.log("request");
+                //     reject(Error(request.statusText));
+                //   }
+                request.open("GET", url);
+                request.setRequestHeader("Content-Type", "application/json")
+                request.send()
+                request.onreadystatechange = function(){
+                    console.log(this.readyState);
+                    if(this.readyState == 4 && this.status === 200){
+
+                        resolve(request.response);
+                      }
+
+                console.log("success in call forrestaraunt");
+            }
+        })
+    }
+  }
+  // export class PostAnswer{
+  //   postAnswer(questionDescription, jsonToken){
+  //       return new Promise(function(resolve,reject){
+  //           let request = new XMLHttpRequest();
+  //           const url = `http://localhost:4000/api/question`
+  //           console.log(url);
+  //           console.log(request);
+
+  //               //    else {
+  //               //       console.log("request");
+  //               //     reject(Error(request.statusText));
+  //               //   }
+  //               var parameters = {
+  //                 "QuestionDescription": questionDescription
+  //               };
+  //               console.log(parameters);
+  //               console.log(jsonToken);
+  //               request.open("POST", url);
+  //               request.setRequestHeader("Content-Type", "application/json")
+  //               request.setRequestHeader("Authorization", "Bearer " + jsonToken)
+  //               request.send(JSON.stringify(parameters))
+  //               request.onreadystatechange = function(){
+  //                   console.log(this.readyState);
+  //                   if(this.readyState == 4 && this.status === 200){
+
+  //                       resolve(request.response);
+  //                     }
+
+  //               console.log("success in call forrestaraunt");
+  //           }
+  //       })
+  //   }
+  // }
   
 
   
