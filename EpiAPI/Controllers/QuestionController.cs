@@ -42,10 +42,11 @@ namespace EpiAPI.Controllers
             _db.Questions.Add(newQuestion);
             _db.SaveChanges();
         }
-      [HttpGet("{questionID}")]  
-    public ActionResult <Question> GetSpecificQuestion(int questionID)
-    {
-        
-    }
+        [HttpGet("{questionID}")]  
+        public ActionResult<Question> GetSpecificQuestion(int questionID)
+        {   
+        Question foundQuestion = _db.Questions.FirstOrDefault(q => q.ID == questionID);
+        return foundQuestion;
+        }
     }
 }   
