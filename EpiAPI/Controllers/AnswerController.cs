@@ -33,6 +33,9 @@ namespace EpiAPI.Controllers
         [HttpPost]
         public void Post([FromBody] Answer newAnswer)
         {
+            var identity = (ClaimsIdentity)User.Identity;
+            var foundId = identity.FindFirst(ClaimTypes.Name).Value;
+            newAnswer.UserID = Convert.ToInt32(foundId);
             _db.Answers.Add(newAnswer);
             _db.SaveChanges();
         }

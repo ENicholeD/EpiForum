@@ -10,8 +10,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
 console.log(window.localStorage.getItem('jsonToken'));
+console.log(window.localStorage.getItem('specificQuestion'));
 
-$(document).ready(function () {
+$(document).ready(function(){
     getQuestions();
 
     $("#tester").click(function (event) {
@@ -43,6 +44,7 @@ $(document).ready(function () {
     $("#logout").click(function(event){
         logout();
     })
+ 
 })
 
 function authenticate(username, password) {
@@ -100,6 +102,7 @@ function getQuestionSuccess(response) {
     $("#" + description.id).click(function(){
         console.log(this);
         getSpecificDetails(this.id)
+       
         })
   })
 
@@ -114,18 +117,24 @@ function getSpecificDetails(id)
 }
 function gSQ(id)
 {
+
+    // window.location.href = "question.html";
     gsQ2(id).then(detailsucces, detailfailure)
 }
 function gsQ2(id)
 {
+    
     var apicall = new GetSpecificQ();
     let promise = apicall.getSpecificQuestion(id);
     return promise;
 }
 function detailsucces(response) {
-    console.log(response);
-    window.location.href = "question.html";
-    $('body').append("<li> +it worked  </li>");
+
+    console.log(JSON.parse(response));
+    window.localStorage.setItem("specificQuestion", response);
+    window.location.href = "/question.html"
+   testerrr()
+    $(".details").append("<li> +it worked  </li>");
   }
 function detailfailure(response) {
     alert(response)

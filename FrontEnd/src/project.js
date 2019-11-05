@@ -168,10 +168,10 @@ export class AuthenticateUser {
                 request.onreadystatechange = function(){
                     console.log(this.readyState);
                     if(this.readyState == 4 && this.status === 200){
-
+                      // window.location.href = "question.html";
                         resolve(request.response);
                       }
-
+                      
                 console.log("success in call forrestaraunt");
             }
         })
