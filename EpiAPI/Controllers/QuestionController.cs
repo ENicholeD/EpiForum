@@ -36,5 +36,6 @@ namespace EpiAPI.Controllers
             _db.Questions.Add(newQuestion);
             _db.SaveChanges();
         }
+        
     }
 }   
