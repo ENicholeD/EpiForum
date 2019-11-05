@@ -3,7 +3,6 @@ import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 
-
 import $ from 'jquery'
 
 $(document).ready(function () {
@@ -17,7 +16,7 @@ $(document).ready(function () {
         var questionDescription = $("#questionInput").val();
 
         postQuestion(questionDescription);
-    })
+    });
    
     $("#newUser").submit(function (event) {
         event.preventDefault();
@@ -43,14 +42,16 @@ function test(){
 }
 
 function getQuestionSuccess(response) {
-  console.log(JSON.parse(response))
+  console.log(JSON.parse(response));
   const question = JSON.parse(response);
+  console.log(question[0].userID)
   
   
- 
+
   question.forEach(function(description){
-     $(".form-box").append("<li>" + description.questionDescription + "</li>")
-     ;   
+
+     $(".form-box").append("<li>" + description.questionDescription + "</li>" + "<br>" + '<button>' + description.id + "</button>");
+
   })
 
 
