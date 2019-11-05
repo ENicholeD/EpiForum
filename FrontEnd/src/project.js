@@ -3,7 +3,7 @@ export class AuthenticateUser {
     apilogin(username,password) {
       return new Promise(function(resolve,reject){
         let request = new XMLHttpRequest();
-        const url = `http://localhost:4000/users/authenticate`
+        const url = `http://localhost:4000/user/authenticate`
         console.log(url)
         request.onreadystatechange = function(){
             console.log(this.status);
@@ -16,6 +16,7 @@ export class AuthenticateUser {
             "Username": username,
             "Password": password
         };
+        console.log(parameters);
         request.open("POST", url);
         request.setRequestHeader("Content-Type", "application/json")
         request.send(JSON.stringify(parameters));
@@ -81,7 +82,7 @@ export class AuthenticateUser {
   }
   // this is me getting started to right the post function for questions
   export class PostQuestion{
-    postQuestion(questionDescription){
+    postQuestion(questionDescription, jsonToken){
         return new Promise(function(resolve,reject){
             let request = new XMLHttpRequest();
             const url = `http://localhost:4000/api/question`
@@ -93,12 +94,13 @@ export class AuthenticateUser {
                 //     reject(Error(request.statusText));
                 //   }
                 var parameters = {
-                  "QuestionDescription": questionDescription,
-                  "UserID": 1
+                  "QuestionDescription": questionDescription
                 };
                 console.log(parameters);
+                console.log(jsonToken);
                 request.open("POST", url);
                 request.setRequestHeader("Content-Type", "application/json")
+                request.setRequestHeader("Authorization", "Bearer " + jsonToken)
                 request.send(JSON.stringify(parameters))
                 request.onreadystatechange = function(){
                     console.log(this.readyState);

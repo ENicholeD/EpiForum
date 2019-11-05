@@ -2,11 +2,14 @@ import { AllUsers } from './project.js'
 import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
-
+import { AuthenticateUser } from './project.js'
 import $ from 'jquery'
+
+console.log(window.localStorage.getItem('jsonToken'));
 
 $(document).ready(function () {
   getQuestions();
+  
     $("#tester").click(function (event) {
         event.preventDefault();
         GetUsers();
@@ -15,7 +18,7 @@ $(document).ready(function () {
         event.preventDefault();
         var questionDescription = $("#questionInput").val();
 
-        postQuestion(questionDescription);
+        postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
     });
    
     $("#newUser").submit(function (event) {
@@ -27,7 +30,40 @@ $(document).ready(function () {
 
         postUser(naMe, last, Uname, passWord);
     })
+    $("#loginForm").submit(function(event)
+    {
+        event.preventDefault();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log(username);
+        console.log(password);
+        authenticate(username, password);
+    })
 })
+function authenticate(username, password)
+{
+    authenticate2nd(username, password).then(loginsucces, loginfailure)
+}
+function authenticate2nd(username, password)
+{
+    var apicall = new AuthenticateUser();
+    var promise = apicall.apilogin(username, password);
+    return promise;
+}
+function loginsucces(response)
+{
+   
+    var responsePare = JSON.parse(response);
+   
+    var jsonToken = responsePare.token;
+    window.localStorage.setItem("jsonToken", responsePare.token);
+    console.log(jsonToken)
+  
+}
+function loginfailure(response)
+{
+    alert(response);
+}
 function getQuestions(){
     test().then(getQuestionSuccess,getQuestionFailure);
     
@@ -89,12 +125,12 @@ function success(response) {
 function failure(response) {
     alert(response)
 }
-function postQuestion(questionDescription) {
-    apiCallPostQuestion(questionDescription).then(postedSuccess, postFailure);
+function postQuestion(questionDescription, jsonToken) {
+    apiCallPostQuestion(questionDescription, jsonToken).then(postedSuccess, postFailure);
 }
-function apiCallPostQuestion(questionDescription) {
+function apiCallPostQuestion(questionDescription, jsonToken) {
     var apicall = new PostQuestion();
-    let promise = apicall.postQuestion(questionDescription);
+    let promise = apicall.postQuestion(questionDescription, jsonToken);
     return promise;
 }
 function postedSuccess(response) {
