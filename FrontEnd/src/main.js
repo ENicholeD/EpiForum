@@ -3,7 +3,7 @@ import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
-import { GetSpecificQ} from './project.js'
+import { GetSpecificQ } from './project.js'
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -41,7 +41,7 @@ $(document).ready(function(){
         console.log(password);
         authenticate(username, password);
     })
-    $("#logout").click(function(event){
+    $("#logout").click(function (event) {
         logout();
     })
  
@@ -82,53 +82,51 @@ function test() {
 }
 
 function getQuestionSuccess(response) {
-  console.log(JSON.parse(response));
-  const question = JSON.parse(response);
-  console.log(question[0].userID)
-  $(".form-box").empty();
-  
-// passed in question id
-    
-  question.forEach(function(description){
-    var buttonHTML= "<button id=" + description.id + ">clickme</button>"
-    console.log(description.user.username);
-     $(".form-box").append("<li>" + description.questionDescription + "</li>" + description.user.username + buttonHTML);
-     
-     
-    //  document.getElementById("getspecificdetails").addEventListener("click", function(){
-    //      console.log("it got here");
-    //     (description.ID);
-    //   });
-    $("#" + description.id).click(function(){
-        console.log(this);
-        getSpecificDetails(this.id)
-       
+
+    console.log(JSON.parse(response));
+    const question = JSON.parse(response);
+    console.log(question[0].userID)
+    $(".form-box").empty();
+
+    // passed in question id
+
+    question.forEach(function (description) {
+        var buttonHTML = "<a id=" + description.id + ">Reply</a>"
+        console.log(description.user.username);
+        $(".form-box").append("<li>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</li>");
+
+
+        //  document.getElementById("getspecificdetails").addEventListener("click", function(){
+        //      console.log("it got here");
+        //     (description.ID);
+        //   });
+        $("#" + description.id).click(function () {
+            console.log(this);
+            getSpecificDetails(this.id)
+
         })
-  })
+    })
 
 
-//   "<button id=getspecificdetails" + "(" + description.id + ")>" + "</buttton>");
+    //   "<button id=getspecificdetails" + "(" + description.id + ")>" + "</buttton>");
 }
 
-function getSpecificDetails(id)
-{
+function getSpecificDetails(id) {
     gSQ(id);
     console.log(id);
 }
-function gSQ(id)
-{
 
-    // window.location.href = "question.html";
+function gSQ(id) {
     gsQ2(id).then(detailsucces, detailfailure)
 }
-function gsQ2(id)
-{
-    
+function gsQ2(id) {
+
     var apicall = new GetSpecificQ();
     let promise = apicall.getSpecificQuestion(id);
     return promise;
 }
 function detailsucces(response) {
+
 
     console.log(JSON.parse(response));
     window.localStorage.setItem("specificQuestion", response);
@@ -136,9 +134,10 @@ function detailsucces(response) {
    testerrr()
     $(".details").append("<li> +it worked  </li>");
   }
+
 function detailfailure(response) {
     alert(response)
-  }
+}
 function getQuestionFailure(response) {
     alert(response)
 }
@@ -180,18 +179,17 @@ function apiCallPostQuestion(questionDescription, jsonToken) {
     return promise;
 }
 function postedSuccess(response) {
-   getQuestions();
+    getQuestions();
 }
 function postFailure(response) {
     alert(response)
 }
-function logout()
-{
+function logout() {
     console.log("it got here")
     localStorage.removeItem('jsonToken');
 }
 
 // this will be for loading the user page when a user first gets logged in.
 // $('userhtml').ready(function(){
-    
+
 // })
