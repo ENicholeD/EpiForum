@@ -46,7 +46,7 @@ namespace EpiAPI.Controllers
         [HttpGet("{questionID}")]  
         public ActionResult<Question> GetSpecificQuestion(int questionID)
         {   
-        Question foundQuestion = _db.Questions.FirstOrDefault(q => q.ID == questionID);
+        Question foundQuestion = _db.Questions.Include(q => q.Answers).FirstOrDefault(q => q.ID == questionID);
         return foundQuestion;
         }
 

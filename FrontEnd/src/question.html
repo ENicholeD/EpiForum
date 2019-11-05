@@ -11,11 +11,28 @@
 <body>
     <h1 class = ""></h1>
 
-    <div class= "">
+    <div id= "details">
         <!-- all responses associated with the question and their usernames -->
-    </div>
-    <form id="answerPost">
         
+        </div>
+    <form id="answerPost">
+            
+                    <input type="hidden" name="QuestionID">
+                    Please enter response <input type="text" name="ResponseDescription" id="responseInput">
+                    <button  class="btn btn-primary" type="submit" name="button">Submit your response</button>
+                  
     </form>
+    
+    <script>
+        console.log(JSON.parse(window.localStorage.getItem('specificQuestion')));
+        var response = JSON.parse(window.localStorage.getItem('specificQuestion'));
+        console.log(response);
+         JSON.parse(window.localStorage.getItem('specificQuestion'))
+         document.getElementById("details").innerHTML = "<li>" + response.questionDescription + "</li>";
+        //  document.getElementById("answerPost").innerHTML = '<input type=hidden value=> </input>' + '<input type=text value=> </input>';
+    //     var body = document.querySelector("body");
+   
+    </script>
+    <button id="testerbutton"> Tester </button>
 </body>
 </html>

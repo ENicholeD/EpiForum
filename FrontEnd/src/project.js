@@ -110,6 +110,7 @@ export class PostUser {
       }
     })
   }
+
 }
 export class GetSpecificQ {
   getSpecificQuestion(questionID) {
@@ -129,6 +130,7 @@ export class GetSpecificQ {
         }
       }
     })
+
   }
 }
   // export class PostAnswer{
