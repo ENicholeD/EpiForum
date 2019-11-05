@@ -24,6 +24,11 @@ module.exports = {
       title: 'Project',
       template: './src/index.html',
       inject: 'body'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      template: 'src/login.html',
+      chunks: ['main']
     })
   ],
   module: {
