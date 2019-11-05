@@ -4,25 +4,27 @@ import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
 import $ from 'jquery'
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
 
 console.log(window.localStorage.getItem('jsonToken'));
 
 $(document).ready(function () {
-  getQuestions();
-  
+    getQuestions();
+
     $("#tester").click(function (event) {
         event.preventDefault();
         GetUsers();
     })
     $("#questionPost").submit(function (event) {
-        event.preventDefault();
+
         var questionDescription = $("#questionInput").val();
 
         postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
     });
-   
+
     $("#newUser").submit(function (event) {
-        event.preventDefault();
         var naMe = $("#FirstName").val();
         var last = $("#LastName").val();
         var Uname = $("#Username").val();
@@ -30,9 +32,7 @@ $(document).ready(function () {
 
         postUser(naMe, last, Uname, passWord);
     })
-    $("#loginForm").submit(function(event)
-    {
-        event.preventDefault();
+    $("#loginForm").submit(function (event) {
         var username = $("#username").val();
         var password = $("#password").val();
         console.log(username);
@@ -40,61 +40,57 @@ $(document).ready(function () {
         authenticate(username, password);
     })
 })
-function authenticate(username, password)
-{
+function authenticate(username, password) {
     authenticate2nd(username, password).then(loginsucces, loginfailure)
 }
-function authenticate2nd(username, password)
-{
+function authenticate2nd(username, password) {
     var apicall = new AuthenticateUser();
     var promise = apicall.apilogin(username, password);
     return promise;
 }
-function loginsucces(response)
-{
-   
+function loginsucces(response) {
+
     var responsePare = JSON.parse(response);
-   
+
     var jsonToken = responsePare.token;
     window.localStorage.setItem("jsonToken", responsePare.token);
     console.log(jsonToken)
-  
+
 }
-function loginfailure(response)
-{
+function loginfailure(response) {
     alert(response);
 }
-function getQuestions(){
-    test().then(getQuestionSuccess,getQuestionFailure);
-    
+function getQuestions() {
+    test().then(getQuestionSuccess, getQuestionFailure);
+
 }
 
-function test(){
-  var apicall = new AllQuestions();
-  let promise = apicall.getAllQuestions();
-  
-  return promise;
-  
+function test() {
+    var apicall = new AllQuestions();
+    let promise = apicall.getAllQuestions();
+
+    return promise;
+
 }
 
 function getQuestionSuccess(response) {
-  console.log(JSON.parse(response));
-  const question = JSON.parse(response);
-  console.log(question[0].userID)
-  
-  
+    console.log(JSON.parse(response));
+    const question = JSON.parse(response);
+    console.log(question[0].userID)
 
-  question.forEach(function(description){
 
-     $(".form-box").append("<li>" + description.questionDescription + "</li>" + "<br>" + '<button>' + description.id + "</button>");
 
-  })
+    question.forEach(function (description) {
+
+        $(".form-box").append("<li>" + description.questionDescription + "</li>" + "<br>" + '<button>' + description.id + "</button>");
+
+    })
 
 
 }
 
 function getQuestionFailure(response) {
-  alert(response)
+    alert(response)
 }
 //getting new User
 function GetUsers() {
