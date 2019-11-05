@@ -1,18 +1,42 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <title>EpiForum</title>
+</head>
 
+<body>
+  <div class="container">
+    <div class='sidenav'>
+      <img
+        src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w" height=100px; width=150px;>
+      <a href="login.html">Login/Sign-up</a><br>
+      <a href="search">Search</a><br>
+      <a href="insights">Insights</a><br>
+      <a href="networking">Networking</a>
+    </div>
 
+    <div class="card" style="width: 50rem;">
+      <img
+        src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w"
+        class="card-img-top" height=400px>
+      <div class="card-body">
+        <h1>User Login</h1>
+        <form action="user.html" id="loginForm">
+          <div>
+            <label>Please enter your username :</label><br>
+            <input id="username" type="text" name="username"><br>
+            <br>
+            <label>Please enter your password:</label><br>
+            <input id="password" type="text" name="password"><br>
+            <button class="btn btn-primary" type="submit" name="button"> Login </button>
+          </div>
+        </form>
+        <a href="./register.html" class="btn btn-primary">Register New User</a>
+      </div>
+    </div>
 
-<form action= "" id="loginForm">
-    Please enter your username : <input id="username" type="text" name="username">
-    Please enter your password:<input id="password" type="text" name="password">
-        <button type="submit" name="button"> Login </button>
-      </form>
+  </div>
+</body>
 
-  <form id="newUser">
-      <input type="hidden" name="UserID">
-      Please enter your First Name : <input id="FirstName" type="text" name="FirstName">
-      Please enter your Last name:<input id="LastName" type="text" name="LastName" >
-      Please enter your username : <input id="Username" type="text" name="Username" >
-      Please enter your password:<input id="Password" type="text" name="Password">
-      <input type="submit" name="button">Register</input>
-    </form>
+</html>
