@@ -29,6 +29,21 @@ module.exports = {
       filename: 'login.html',
       template: 'src/login.html',
       chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'register.html',
+      template: 'src/register.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'QuestionAnswer.html',
+      template: 'src/QuestionAnswer.html',
+      chunks: ['main']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'user.html',
+      template: 'src/user.html',
+      chunks: ['main']
     })
   ],
   module: {

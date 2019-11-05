@@ -5,10 +5,18 @@
   z-index:1;
   top: 0;
   left:0;
-  background-color: #111;
-  overflow-x: hidden:auto;padding-top: 20px;
+  background-color:lightblue;
+  /* overflow-x: hidden:auto;padding-top: 20px; */
 }
 
 .form-box{
   padding: 100px;
 }
+body {
+  background-color: #F234;
+  text-align: center;
+}
+button {
+  margin: 20px;
+}
+
