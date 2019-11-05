@@ -1,6 +1,7 @@
 import { AllUsers } from './project.js'
 import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
+import { AllQuestions } from './project.js'
 
 
 import $ from 'jquery'
@@ -48,7 +49,8 @@ function getQuestionSuccess(response) {
   
  
   question.forEach(function(description){
-     $(".form-box").append("<li>" + description.questionDescription + "</li>");   
+     $(".form-box").append("<li>" + description.questionDescription + "</li>")
+     ;   
   })
 
 
