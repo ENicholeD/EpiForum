@@ -107,7 +107,7 @@ function getQuestionSuccess(response) {
     question.forEach(function (description) {
         var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
         console.log(description.user.username);
-        $(".form-box").append("<li>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</li>");
+        $(".form-box").append("<p>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
         $("#" + description.id).click(function () {
             console.log(this);
             getSpecificDetails(this.id)
