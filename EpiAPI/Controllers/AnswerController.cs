@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
 using EpiAPI;
+using System.Security.Claims;
 
 namespace EpiAPI.Controllers
 {
@@ -35,7 +36,7 @@ namespace EpiAPI.Controllers
         {
             var identity = (ClaimsIdentity)User.Identity;
             var foundId = identity.FindFirst(ClaimTypes.Name).Value;
-            newAnswer.UserID = Convert.ToInt32(foundId);
+            // newAnswer.UserID = Convert.ToInt32(foundId);
             _db.Answers.Add(newAnswer);
             _db.SaveChanges();
         }

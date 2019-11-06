@@ -12,7 +12,7 @@ import './styles.css';
 console.log(window.localStorage.getItem('jsonToken'));
 console.log(window.localStorage.getItem('specificQuestion'));
 
-$(document).ready(function(){
+$(document).ready(function () {
     getQuestions();
 
     $("#tester").click(function (event) {
@@ -25,6 +25,7 @@ $(document).ready(function(){
 
         postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
     });
+   
 
     $("#newUser").submit(function (event) {
         var naMe = $("#FirstName").val();
@@ -44,7 +45,7 @@ $(document).ready(function(){
     $("#logout").click(function (event) {
         logout();
     })
- 
+
 })
 
 function authenticate(username, password) {
@@ -91,7 +92,7 @@ function getQuestionSuccess(response) {
     // passed in question id
 
     question.forEach(function (description) {
-        var buttonHTML = "<a id=" + description.id + ">Reply</a>"
+        var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
         console.log(description.user.username);
         $(".form-box").append("<li>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</li>");
 
@@ -131,9 +132,9 @@ function detailsucces(response) {
     console.log(JSON.parse(response));
     window.localStorage.setItem("specificQuestion", response);
     window.location.href = "/question.html"
-   testerrr()
+    testerrr()
     $(".details").append("<li> +it worked  </li>");
-  }
+}
 
 function detailfailure(response) {
     alert(response)
