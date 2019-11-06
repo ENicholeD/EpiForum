@@ -4,6 +4,7 @@ import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
 import { GetSpecificQ } from './project.js'
+import { PostAnswer } from './project.js'
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,13 @@ $(document).ready(function () {
     });
    
 
+    $("#answerPost").submit(function(event){
+        event.preventDefault();
+        var answerDescription =$("#responseInput").val();
+        postAnswer(answerDescription, window.localStorage.getItem('jsonToken'));
+
+    });
+
     $("#newUser").submit(function (event) {
         var naMe = $("#FirstName").val();
         var last = $("#LastName").val();
@@ -48,6 +56,9 @@ $(document).ready(function () {
 
 })
 
+//API functions start here
+
+//Login
 function authenticate(username, password) {
 
     authenticate2nd(username, password).then(loginsucces, loginfailure)
@@ -58,7 +69,7 @@ function authenticate2nd(username, password) {
     return promise;
 }
 function loginsucces(response) {
-
+    console.log("it got here")
     var responsePare = JSON.parse(response);
 
     var jsonToken = responsePare.token;
@@ -69,6 +80,8 @@ function loginsucces(response) {
 function loginfailure(response) {
     alert(response);
 }
+
+//Question
 function getQuestions() {
     test().then(getQuestionSuccess, getQuestionFailure);
 
@@ -95,12 +108,6 @@ function getQuestionSuccess(response) {
         var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
         console.log(description.user.username);
         $(".form-box").append("<li>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</li>");
-
-
-        //  document.getElementById("getspecificdetails").addEventListener("click", function(){
-        //      console.log("it got here");
-        //     (description.ID);
-        //   });
         $("#" + description.id).click(function () {
             console.log(this);
             getSpecificDetails(this.id)
@@ -108,8 +115,6 @@ function getQuestionSuccess(response) {
         })
     })
 
-
-    //   "<button id=getspecificdetails" + "(" + description.id + ")>" + "</buttton>");
 }
 
 function getSpecificDetails(id) {
@@ -118,7 +123,7 @@ function getSpecificDetails(id) {
 }
 
 function gSQ(id) {
-    gsQ2(id).then(detailsucces, detailfailure)
+    gsQ2(id).then(detailsuccess, detailfailure)
 }
 function gsQ2(id) {
 
@@ -126,7 +131,8 @@ function gsQ2(id) {
     let promise = apicall.getSpecificQuestion(id);
     return promise;
 }
-function detailsucces(response) {
+
+function detailsuccess(response) {
 
 
     console.log(JSON.parse(response));
@@ -142,6 +148,18 @@ function detailfailure(response) {
 function getQuestionFailure(response) {
     alert(response)
 }
+
+
+//Answer
+
+
+
+
+
+
+
+
+
 //getting new User
 function GetUsers() {
     getAllUsers().then(success, failure);
@@ -165,12 +183,12 @@ function success(response) {
     const user = JSON.parse(response);
     console.log(user);
     $("body").append("<li>" + user[0].firstName + user[0].questions[0].questionDescription + "</li>");
-
-
 }
+
 function failure(response) {
     alert(response)
 }
+
 function postQuestion(questionDescription, jsonToken) {
     apiCallPostQuestion(questionDescription, jsonToken).then(postedSuccess, postFailure);
 }
@@ -185,6 +203,25 @@ function postedSuccess(response) {
 function postFailure(response) {
     alert(response)
 }
+
+
+
+function postAnswer(answerDescription, jsonToken) {
+    apiCallPostAnswer(answerDescription, jsonToken).then(postedASuccess, postFailure);
+}
+function apiCallPostAnswer(answerDescription, jsonToken) {
+    var apicall = new PostAnswer();
+    let promise = apicall.postAnswer(answerDescription, jsonToken);
+    return promise;
+}
+function postedASuccess(response) {
+    console.log("here");
+}
+function postFailure(response) {
+    alert(response)
+}
+
+
 function logout() {
     console.log("it got here")
     localStorage.removeItem('jsonToken');
