@@ -18,6 +18,7 @@
         <a href="networking">Networking</a>
 
     </div>
+    
     <h1 class="username"></h1>
     <form action="./index.html" id="questionPost">
         <input type="hidden" name="UserID">
@@ -25,7 +26,23 @@
         <input type="text" name="QuestionDescription" id="questionInput">
         <button class="btn btn-primary" type="submit" name="button">Send</button>
     </form>
+    <div id="replacewitherinstylecard"> 
+            
+            </div>
+            <div id="answersforuser"> </div>
+    
+    <script>
+        var tester = JSON.parse(window.localStorage.getItem("userPage"))
+        console.log(JSON.parse(window.localStorage.getItem("userPage")));
+        console.log(tester);
 
+        document.getElementById("replacewitherinstylecard").innerHTML = "</li>" + tester.firstName + "<br>" +  tester.lastName + "</li>";
+        tester.answers.forEach(function(a){
+            console.log(a.answerDescription)
+            document.body.append(document.getElementById("answersforuser").innerHTML = a.answerDescription );
+        })
+    </script>
+   
     
 
 </body>

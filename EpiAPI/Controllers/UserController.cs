@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace MessageBoard.Controllers
 {
@@ -50,6 +51,16 @@ namespace MessageBoard.Controllers
 
             return Ok(user);
         }
-
+        [Authorize]
+        [HttpGet("userpage")]  
+        public ActionResult<User> GetUserPage()
+        {   
+            var identity = (ClaimsIdentity)User.Identity;
+            var foundId = identity.FindFirst(ClaimTypes.Name).Value;
+            Console.WriteLine("this is from the controller" + identity);
+            Console.WriteLine("this is the second log from the controller" + foundId);
+            User foundUser = _db.Users.Include(u => u.Questions).ThenInclude(u => u.Answers).FirstOrDefault(u => u.UserID == Convert.ToInt32(foundId));
+            return foundUser;
+        }
     }
 }

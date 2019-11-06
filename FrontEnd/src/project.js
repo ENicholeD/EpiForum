@@ -170,6 +170,26 @@ export class GetSpecificQ {
         })
     }
   }
+  export class GetUserPage{
+    getSpecificUser(jsonToken){
+      console.log("it got here")
+      return new Promise(function(resolve,reject){
+        let request = new XMLHttpRequest();
+        const url = 'http://localhost:4000/user/userpage'
+
+        request.open("GET", url);
+        request.setRequestHeader("Content-Type", "application/json")
+        request.setRequestHeader("Authorization", "Bearer " + jsonToken)
+        request.send();
+        request.onreadystatechange = function(){
+          if(this.readyState == 4 && this.status == 200){
+            resolve(request.response);
+          }
+          console.log("success in call for user page")
+        }
+      })
+    }
+  }
 
 
 
