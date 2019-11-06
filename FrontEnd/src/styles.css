@@ -7,16 +7,17 @@
   z-index:1;
   top: 0;
   left:0;
-  background-color: rgba(107, 226, 220, .5);
+  background-color: rgba(107, 226, 220, .75);
 }
 h1{
-  font-family: 'Acme', sans-serif;
+  font-family: 'Comfortaa';
   letter-spacing: 6px;
   font-size: 70px;
-  color: rgb(226, 226, 226);  
+  color: rgb(255, 255, 255);  
 }
 hr {
   box-shadow: 3px 3px 3px rgb(29, 119, 119); 
+  border-color: transparent;
 }
 
 .form-box{
@@ -40,9 +41,9 @@ button {
 }
 a{
   color: aliceblue;
-  font-family: 'Acme', sans-serif;
+  font-family: 'Comfortaa';
   letter-spacing: 2px;
-  font-size: 25px;
+  font-size: 20px;
 }
 #navImg {
   width: 170px;
@@ -53,8 +54,13 @@ a{
   padding-top: 8px;
 }
 #loginCard {
-  margin-top: 30%;
+  margin-top: 10%;
 }
 .reply {
   font-size: 15px;
+}
+.btn {
+  background-color: rgb(80, 80, 80);
+  border-color: rgb(100, 100, 100);
+  box-shadow: -1px 3px 4px gray;
 }
