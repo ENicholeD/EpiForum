@@ -41,11 +41,6 @@ module.exports = {
       chunks: ['main']
     }),
     new HtmlWebpackPlugin({
-      filename: 'QuestionAnswer.html',
-      template: 'src/QuestionAnswer.html',
-      chunks: ['main']
-    }),
-    new HtmlWebpackPlugin({
       filename: 'user.html',
       template: 'src/user.html',
       chunks: ['main']

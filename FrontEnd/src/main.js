@@ -5,6 +5,7 @@ import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
 import { GetSpecificQ } from './project.js'
 import { PostAnswer } from './project.js'
+import { MeetUp } from './project.js'
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,17 +22,16 @@ $(document).ready(function () {
         event.preventDefault();
         GetUsers();
     })
+    
     $("#questionPost").submit(function (event) {
-
         var questionDescription = $("#questionInput").val();
-
         postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
     });
-   
 
-    $("#answerPost").submit(function(event){
+
+    $("#answerPost").submit(function (event) {
         event.preventDefault();
-        var answerDescription =$("#responseInput").val();
+        var answerDescription = $("#responseInput").val();
         postAnswer(answerDescription, window.localStorage.getItem('jsonToken'));
 
     });
@@ -41,18 +41,17 @@ $(document).ready(function () {
         var last = $("#LastName").val();
         var Uname = $("#Username").val();
         var passWord = $("#Password").val();
-
         postUser(naMe, last, Uname, passWord);
     })
+
     $("#loginForm").submit(function (event) {
         event.preventDefault();
         var username = $("#username").val();
         var password = $("#password").val();
-        console.log(username);
-        console.log(password);
         authenticate(username, password);
         gSU();
     })
+    
     $("#logout").click(function (event) {
         logout();
     })
@@ -63,21 +62,19 @@ $(document).ready(function () {
 
 //Login
 function authenticate(username, password) {
-
     authenticate2nd(username, password).then(loginsucces, failurefunction)
 }
+
 function authenticate2nd(username, password) {
     var apicall = new AuthenticateUser();
     var promise = apicall.apilogin(username, password);
     return promise;
 }
-function loginsucces(response) {
-    console.log("it got here")
-    var responsePare = JSON.parse(response);
 
+function loginsucces(response) {
+    var responsePare = JSON.parse(response);
     var jsonToken = responsePare.token;
     window.localStorage.setItem("jsonToken", responsePare.token);
-    console.log(jsonToken)
 
 }
 // only failure function
@@ -99,69 +96,41 @@ function getquestionsapicall() {
 
 }
 function getQuestionSuccess(response) {
-
-    console.log(JSON.parse(response));
     const question = JSON.parse(response);
-    console.log(question[0].userID)
     $(".form-box").empty();
-
     // passed in question id
 
     question.forEach(function (description) {
         var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
-        console.log(description.user.username);
         $(".form-box").append("<p>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
         $("#" + description.id).click(function () {
             getSpecificDetails(this.id)
 
         })
     })
+
 }
 
-
 // get specific details about a question.
-
 function getSpecificDetails(id) {
     gSQ(id);
-    console.log(id);
 }
 // short for get specific question. 
 function gSQ(id) {
     gsQ2(id).then(detailsuccess, failurefunction)
 }
 function gsQ2(id) {
-
     var apicall = new GetSpecificQ();
     let promise = apicall.getSpecificQuestion(id);
     return promise;
 }
 
 function detailsuccess(response) {
-
-
-    console.log(JSON.parse(response));
     window.localStorage.setItem("specificQuestion", response);
-    
     window.location.href = "/question.html"
-    
 }
 
-
-// end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
-
 //Answer
-
-
-
-
-
-
-
-
-
-
-
-
 
 //getting new User
 function GetUsers() {
@@ -213,36 +182,26 @@ function apiCallPostAnswer(answerDescription, jsonToken) {
 }
 function postedASuccess(response) {
     window.localStorage.getItem("specificQuestion");
-    // window.location.href = "/question.html"
-    var answerResponse= JSON.parse(window.localStorage.getItem("specificQuestion"));
-    console.log(answerResponse);
+    var answerResponse = JSON.parse(window.localStorage.getItem("specificQuestion"));
     getSpecificDetails(answerResponse.id);
-
-
-
 }
-
-
 function logout() {
-    console.log("it got here")
+    
     localStorage.removeItem('jsonToken');
     localStorage.removeItem('userPage');
+
 }
-function gSU()
-{
-    
+function gSU() {
+
     gSUApiCall().then(gotuserpage, failurefunction)
 }
-function gSUApiCall()
-{
+function gSUApiCall() {
     var apicall = new GetUserPage();
     let promise = apicall.getSpecificUser(window.localStorage.getItem('jsonToken'));
     return promise;
 }
-function gotuserpage(response)
-{
-    
+function gotuserpage(response) {
     window.localStorage.setItem('userPage', response);
     window.location.href = "/user.html"
-    
+
 }

@@ -16,37 +16,32 @@
             id="navImg">
         <a href="login.html">Login/Sign-up</a><br>
         <a href="search">Search</a><br>
-        <a href="index.html">Home</a>
+        <a href="index.html">Home</a><br>
+        <a id="logout" href="index.html">Logout</a>
     </div>
-    
+
     <div class="container">
-    <h1 class="username"></h1>
-  <div class="card" id="userPage"></div>
-    <form action="./index.html" id="questionPost">
-        <input type="hidden" name="UserID">
-        <label for="">Please enter question</label>
-        <input type="text" name="QuestionDescription" id="questionInput">
-        <button class="btn btn-primary" type="submit" name="button">Send</button>
-    </form>
-  </div>
+        <h1 class="username"></h1>
+        <div class="card" id="userPage"></div>
+        <form action="" id="questionPost">
+            <input type="hidden" name="UserID">
+            <label for="">Please enter question</label>
+            <input type="text" name="QuestionDescription" id="questionInput">
+            <button class="btn btn-primary" type="submit" name="button">Send</button>
+        </form>
     </div>
-    <div id="replacewitherinstylecard"> 
-            
-            </div>
-            <div id="answersforuser"> </div>
-    
+    </div>
+    <div id="replacewitherinstylecard"> </div>
+    <div id="answersforuser"> </div>
+
     <script>
         var tester = JSON.parse(window.localStorage.getItem("userPage"))
-        console.log(JSON.parse(window.localStorage.getItem("userPage")));
-        console.log(tester);
-
-        document.getElementById("replacewitherinstylecard").innerHTML = "</li>" + tester.firstName + "<br>" +  tester.lastName + "</li>";
-        tester.answers.forEach(function(a){
-            console.log(a.answerDescription)
-            document.body.append(document.getElementById("answersforuser").innerHTML = a.answerDescription );
+        document.getElementById("replacewitherinstylecard").innerHTML = "</li>" + "@" + tester.firstName + tester.lastName + "</li>";
+        tester.answers.forEach(function (a) {
+            document.body.append(document.getElementById("answersforuser").innerHTML = a.answerDescription);
         })
     </script>
-   
+
 </body>
 
 </html>
