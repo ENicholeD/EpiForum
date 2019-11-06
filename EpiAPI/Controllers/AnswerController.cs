@@ -7,6 +7,7 @@ using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
 using EpiAPI;
+using System.Security.Claims;
 
 namespace EpiAPI.Controllers
 {
@@ -30,12 +31,13 @@ namespace EpiAPI.Controllers
             var answer = _db.Answers.AsQueryable();
             return answer.ToList();
         }
-        [HttpPost]
-        public void Post([FromBody] Answer newAnswer)
+        [HttpPost("{id}")]
+        public void Post([FromBody] Answer newAnswer, int id)
         {
             var identity = (ClaimsIdentity)User.Identity;
             var foundId = identity.FindFirst(ClaimTypes.Name).Value;
-            newAnswer.UserID = Convert.ToInt32(foundId);
+            newAnswer.UserId = Convert.ToInt32(foundId);
+            newAnswer.QuestionID = id;
             _db.Answers.Add(newAnswer);
             _db.SaveChanges();
         }
