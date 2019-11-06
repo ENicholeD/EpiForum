@@ -28,18 +28,43 @@
     <form id="answerPost">
 
         <input type="hidden" name="QuestionID">
-         Enter response <input type="text" name="ResponseDescription" id="responseInput">
+         Enter response <input type="text" name="ResponseDescription" id="responseInput" required>
         <button class="btn btn-primary" type="submit" name="button">Send</button>
 
     </form>
+    <div id="response">
+
+    </div>
 
     <script>
         console.log(JSON.parse(window.localStorage.getItem('specificQuestion')));
         var response = JSON.parse(window.localStorage.getItem('specificQuestion'));
         JSON.parse(window.localStorage.getItem('specificQuestion'))
         document.getElementById("details").innerHTML = "<li>" + response.questionDescription + "</li>";
+        
+        response.answers.forEach(function(answer){
+            console.log(answer.answerDescription);
+            linebreak = document.createElement("br");
+            document.body.append(document.getElementById("response").innerHTML =   answer.answerDescription);
+            document.body.appendChild(linebreak);
+           
+
+            // document.getElementById("response").innerHTML = "<li>" + answer.answerDescription + "</li>";    
+        });
+        
+        
+        
+        
+        
+        
+
+
+
+
         //  document.getElementById("answerPost").innerHTML = '<input type=hidden value=> </input>' + '<input type=text value=> </input>';
     //     var body = document.querySelector("body");
+    // need to post the precious answers .. and who posted it.. 
+    // when that form gets submitted
 
     </script>
  

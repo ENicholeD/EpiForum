@@ -7,16 +7,17 @@
   z-index:1;
   top: 0;
   left:0;
-  background-color: rgba(107, 226, 220, .5);
+  background-color:rgba(40,232,223,.75);
 }
 h1{
-  font-family: 'Acme', sans-serif;
+  font-family: 'Comfortaa';
   letter-spacing: 6px;
   font-size: 70px;
-  color: rgb(226, 226, 226);  
+  color: rgb(255, 255, 255);  
 }
 hr {
   box-shadow: 3px 3px 3px rgb(29, 119, 119); 
+  border-color: transparent;
 }
 
 .form-box{
@@ -25,13 +26,15 @@ hr {
   margin-left: 100px;
 }
 body {
-  background-image: url(https://www.xmple.com/wallpaper/gradient-white-linear-blue-3840x2160-c2-00ced1-f5f5f5-a-90-f-14.svg);
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(40,232,223,1) 100%); 
   background-attachment: fixed;
   background-size: cover;
   text-align: center;
 }
 button {
   margin: 20px;
+  font-family: 'Comfortaa';
 }
 .card {
   text-align: center;
@@ -39,13 +42,14 @@ button {
   border: solid lightgray 3px;
 }
 a{
-  color: aliceblue;
-  font-family: 'Acme', sans-serif;
+  color: white;
+  font-family: 'Comfortaa';
   letter-spacing: 2px;
-  font-size: 25px;
+  font-size: 20px;
 }
 #navImg {
   width: 170px;
+  background-color:rgba(40,232,223,1);
 }
 #loginImg {
   width: 400px;
@@ -53,8 +57,20 @@ a{
   padding-top: 8px;
 }
 #loginCard {
-  margin-top: 30%;
+  margin-top: 10%;
 }
 .reply {
   font-size: 15px;
+}
+.btn {
+  background-color: rgb(80, 80, 80);
+  border-color: rgb(100, 100, 100);
+  box-shadow: -1px 3px 4px gray;
+}
+label {
+  font-style: unset;
+}
+#userPage {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

@@ -13,6 +13,7 @@ import './styles.css';
 console.log(window.localStorage.getItem('jsonToken'));
 console.log(window.localStorage.getItem('specificQuestion'));
 console.log(window.localStorage.getItem('userPage'));
+
 $(document).ready(function () {
     getQuestions();
 
@@ -108,7 +109,8 @@ function getQuestionSuccess(response) {
 
     question.forEach(function (description) {
         var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
-        $(".form-box").append("<li>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</li>");
+        console.log(description.user.username);
+        $(".form-box").append("<p>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
         $("#" + description.id).click(function () {
             getSpecificDetails(this.id)
 
@@ -118,11 +120,12 @@ function getQuestionSuccess(response) {
 
 
 // get specific details about a question.
+
 function getSpecificDetails(id) {
     gSQ(id);
     console.log(id);
 }
-
+// short for get specific question. 
 function gSQ(id) {
     gsQ2(id).then(detailsuccess, failurefunction)
 }
@@ -138,14 +141,19 @@ function detailsuccess(response) {
 
     console.log(JSON.parse(response));
     window.localStorage.setItem("specificQuestion", response);
+    
     window.location.href = "/question.html"
-    testerrr()
-    $(".details").append("<li> +it worked  </li>");
+    
+}
 
 }
 // end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
 
 //Answer
+
+
+
+
 
 
 
@@ -204,7 +212,14 @@ function apiCallPostAnswer(answerDescription, jsonToken) {
     return promise;
 }
 function postedASuccess(response) {
-    console.log("here");
+    window.localStorage.getItem("specificQuestion");
+    // window.location.href = "/question.html"
+    var answerResponse= JSON.parse(window.localStorage.getItem("specificQuestion"));
+    console.log(answerResponse);
+    getSpecificDetails(answerResponse.id);
+
+
+
 }
 
 
