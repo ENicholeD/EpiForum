@@ -36,8 +36,10 @@ namespace EpiAPI.Controllers
         {
             var identity = (ClaimsIdentity)User.Identity;
             var foundId = identity.FindFirst(ClaimTypes.Name).Value;
+
             newAnswer.UserId = Convert.ToInt32(foundId);
             newAnswer.QuestionID = id;
+
             _db.Answers.Add(newAnswer);
             _db.SaveChanges();
         }

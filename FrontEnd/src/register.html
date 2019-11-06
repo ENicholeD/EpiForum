@@ -13,8 +13,7 @@
                 id="navImg">
             <a href="login.html">Login/Sign-up</a><br>
             <a href="search">Search</a><br>
-            <a href="insights">Insights</a><br>
-            <a href="networking">Networking</a>
+            <a href="index.html">Home</a>
         
         </div>
         <div class="card" id="loginCard" style="width: 50rem;">
@@ -22,24 +21,23 @@
                 class="card-img-top" id="loginImg">
             <div class="card-body">
                 <h1>User Registration</h1>
-
-
+                
                 <form action="user.html" id="newUser">
 
                     <input type="hidden" name="UserID">
                     <label> First Name:</label>
-                    <input id="FirstName" type="text" name="FirstName">
+                    <input id="FirstName" type="text" name="FirstName" required>
                     <br>
                     <label>Last name:</label>
-                    <input id="LastName" type="text" name="LastName">
+                    <input id="LastName" type="text" name="LastName" required>
                     <br>
 
                     <label> Username:</label>
-                    <input id="Username" type="text" name="Username">
+                    <input id="Username" type="text" name="Username" required>
                     <br>
 
                     <label> Password:</label>
-                    <input id="Password" type="text" name="Password">
+                    <input id="Password" type="text" name="Password" required>
                     <br>
                     <button class="btn btn-primary" type="submit" name="button">Register</button>
             </div>
