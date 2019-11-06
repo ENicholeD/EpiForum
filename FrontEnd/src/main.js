@@ -1,4 +1,4 @@
-import { AllUsers } from './project.js'
+import { AllUsers, GetUserPage } from './project.js'
 import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
@@ -12,7 +12,7 @@ import './styles.css';
 
 console.log(window.localStorage.getItem('jsonToken'));
 console.log(window.localStorage.getItem('specificQuestion'));
-// console.log(window.localStorage.setItem("answerDescription", response);
+console.log(window.localStorage.getItem('userPage'));
 
 $(document).ready(function () {
     getQuestions();
@@ -45,11 +45,13 @@ $(document).ready(function () {
         postUser(naMe, last, Uname, passWord);
     })
     $("#loginForm").submit(function (event) {
+        event.preventDefault();
         var username = $("#username").val();
         var password = $("#password").val();
         console.log(username);
         console.log(password);
         authenticate(username, password);
+        gSU();
     })
     $("#logout").click(function (event) {
         logout();
@@ -62,7 +64,7 @@ $(document).ready(function () {
 //Login
 function authenticate(username, password) {
 
-    authenticate2nd(username, password).then(loginsucces, loginfailure)
+    authenticate2nd(username, password).then(loginsucces, failurefunction)
 }
 function authenticate2nd(username, password) {
     var apicall = new AuthenticateUser();
@@ -78,24 +80,24 @@ function loginsucces(response) {
     console.log(jsonToken)
 
 }
-function loginfailure(response) {
+// only failure function
+function failurefunction(response) {
     alert(response);
 }
+// failure function for every failed apiresponse.
 
 //Question
 function getQuestions() {
-    test().then(getQuestionSuccess, getQuestionFailure);
+    getquestionsapicall().then(getQuestionSuccess, failurefunction);
 
 }
 
-function test() {
+function getquestionsapicall() {
     var apicall = new AllQuestions();
     let promise = apicall.getAllQuestions();
-
     return promise;
 
 }
-
 function getQuestionSuccess(response) {
 
     console.log(JSON.parse(response));
@@ -110,14 +112,14 @@ function getQuestionSuccess(response) {
         console.log(description.user.username);
         $(".form-box").append("<p>" + "@" + description.user.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
         $("#" + description.id).click(function () {
-            console.log(this);
             getSpecificDetails(this.id)
 
         })
     })
-
 }
 
+
+// get specific details about a question.
 
 function getSpecificDetails(id) {
     gSQ(id);
@@ -125,7 +127,7 @@ function getSpecificDetails(id) {
 }
 // short for get specific question. 
 function gSQ(id) {
-    gsQ2(id).then(detailsuccess, detailfailure)
+    gsQ2(id).then(detailsuccess, failurefunction)
 }
 function gsQ2(id) {
 
@@ -144,13 +146,8 @@ function detailsuccess(response) {
     
 }
 
-function detailfailure(response) {
-    alert(response)
 }
-function getQuestionFailure(response) {
-    alert(response)
-}
-
+// end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
 
 //Answer
 
@@ -177,26 +174,24 @@ function getAllUsers() {
 }
 //posting new user
 function postUser(naMe, last, Uname, passWord) {
-    apiCallPostUser(naMe, last, Uname, passWord).then(postedSuccess, postFailure);
+    apiCallPostUser(naMe, last, Uname, passWord).then(postedSuccess, failurefunction);
 }
 function apiCallPostUser(naMe, last, Uname, passWord) {
     var apicall = new PostUser();
     let promise = apicall.postUser(naMe, last, Uname, passWord);
     return promise;
 }
-//posting on frontend
+
 function success(response) {
     const user = JSON.parse(response);
     console.log(user);
     $("body").append("<li>" + user[0].firstName + user[0].questions[0].questionDescription + "</li>");
 }
+// end of new users. we didnt even use this function because we decided not to display users.
 
-function failure(response) {
-    alert(response)
-}
-
+// posting question. 
 function postQuestion(questionDescription, jsonToken) {
-    apiCallPostQuestion(questionDescription, jsonToken).then(postedSuccess, postFailure);
+    apiCallPostQuestion(questionDescription, jsonToken).then(postedSuccess, failurefunction);
 }
 function apiCallPostQuestion(questionDescription, jsonToken) {
     var apicall = new PostQuestion();
@@ -206,14 +201,10 @@ function apiCallPostQuestion(questionDescription, jsonToken) {
 function postedSuccess(response) {
     getQuestions();
 }
-function postFailure(response) {
-    alert(response)
-}
-
-
+// end of post question.
 
 function postAnswer(answerDescription, jsonToken) {
-    apiCallPostAnswer(answerDescription, jsonToken).then(postedASuccess, postFailure);
+    apiCallPostAnswer(answerDescription, jsonToken).then(postedASuccess, failurefunction);
 }
 function apiCallPostAnswer(answerDescription, jsonToken) {
     var apicall = new PostAnswer();
@@ -230,17 +221,28 @@ function postedASuccess(response) {
 
 
 }
-function postFailure(response) {
-    alert(response)
-}
 
 
 function logout() {
     console.log("it got here")
     localStorage.removeItem('jsonToken');
+    localStorage.removeItem('userPage');
 }
-
-// this will be for loading the user page when a user first gets logged in.
-// $('userhtml').ready(function(){
-
-// })
+function gSU()
+{
+    
+    gSUApiCall().then(gotuserpage, failurefunction)
+}
+function gSUApiCall()
+{
+    var apicall = new GetUserPage();
+    let promise = apicall.getSpecificUser(window.localStorage.getItem('jsonToken'));
+    return promise;
+}
+function gotuserpage(response)
+{
+    
+    window.localStorage.setItem('userPage', response);
+    window.location.href = "/user.html"
+    
+}

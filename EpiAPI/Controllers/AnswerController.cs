@@ -31,6 +31,7 @@ namespace EpiAPI.Controllers
             var answer = _db.Answers.AsQueryable();
             return answer.ToList();
         }
+        [Authorize]
         [HttpPost("{id}")]
         public void Post([FromBody] Answer newAnswer, int id)
         {

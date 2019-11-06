@@ -39,9 +39,6 @@
     <script>
         console.log(JSON.parse(window.localStorage.getItem('specificQuestion')));
         var response = JSON.parse(window.localStorage.getItem('specificQuestion'));
-       
-
-        console.log(response);
         JSON.parse(window.localStorage.getItem('specificQuestion'))
         document.getElementById("details").innerHTML = "<li>" + response.questionDescription + "</li>";
         
