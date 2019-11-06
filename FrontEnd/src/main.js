@@ -130,22 +130,6 @@ function detailsuccess(response) {
     window.location.href = "/question.html"
 }
 
-
-
-// end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
-
-//Meet-up
-// function GetMeetUps(){
-//     getMeetUps().then(success, failure);
-
-// }
-
-// function getMeetUps(){
-//     var apicall= new MeetUp();
-//     let promise = apicall.getMeetUps();
-//     return promise;
-// }
-
 //Answer
 
 //getting new User
