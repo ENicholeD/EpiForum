@@ -146,7 +146,7 @@ function detailsuccess(response) {
     
 }
 
-}
+
 // end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
 
 //Answer
