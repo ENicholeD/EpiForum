@@ -89,7 +89,7 @@ label {
   margin-bottom: 10%;
   
 }
-#answerCollection, #questionCollection {
+#response, #questionCollection {
   text-align: center;
   border: solid lightgray 3px;
   border-radius: 10px;
