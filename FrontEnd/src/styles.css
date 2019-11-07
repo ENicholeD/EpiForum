@@ -46,11 +46,14 @@ button {
   margin: auto;
   border: solid lightgray 3px;
 }
-a{
+a, #userProfile{
   color: white;
   font-family: 'Comfortaa';
   letter-spacing: 2px;
   font-size: 20px;
+}
+a:hover, #userProfile:hover{
+  color: aqua;
 }
 #navImg {
   width: 130px;
@@ -68,6 +71,9 @@ a{
 .reply {
   font-size: 15px;
 }
+.reply:hover{
+  color: lightgray !important;
+} 
 .btn {
   background-color: rgb(80, 80, 80);
   border-color: rgb(100, 100, 100);
@@ -80,13 +86,17 @@ label {
   padding-top: 30px;
   padding-bottom: 30px;
 }
-#questionBox {
+#questionBox, #answerBox {
   text-align: center;
   border: solid lightgray 3px;
   border-radius: 10px;
   background-color: white;
   margin-bottom: 10%;
-  
+  margin-left: 20%;
+  margin-right: 20%;
+}
+#answerBox{
+  padding: 150px;
 }
  #questionCollection {
   text-align: center;
@@ -105,4 +115,12 @@ label {
 }
 #questionPost{
   margin-top: 5%;
+}
+
+#fontStyle{
+  font-family: 'Comfortaa'; 
+}
+
+#testthis{
+  text-align: left; 
 }
