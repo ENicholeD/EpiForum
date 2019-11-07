@@ -16,19 +16,20 @@
             id="navImg">
         <a href="login.html">Login/Sign-up</a><br>
         <a href="search">Search</a><br>
-        <a href="index.html">Home</a>
+        <a href="index.html">Home</a><br>
+        <a id="logout" href="index.html">Logout</a>
     </div>
-    
+
     <div class="container">
-    <h1 class="username"></h1>
-  <div class="card" id="userPage"></div>
-    <form action="./index.html" id="questionPost">
-        <input type="hidden" name="UserID">
-        <label for="">Please enter question</label>
-        <input type="text" name="QuestionDescription" id="questionInput">
-        <button class="btn btn-primary" type="submit" name="button">Send</button>
-    </form>
-  </div>
+        <h1 class="username"></h1>
+        <div class="card" id="userPage"></div>
+        <form action="" id="questionPost">
+            <input type="hidden" name="UserID">
+            <label for="">Please enter question</label>
+            <input type="text" name="QuestionDescription" id="questionInput">
+            <button class="btn btn-primary" type="submit" name="button">Send</button>
+        </form>
+    </div>
     </div>
     <div id="replacewitherinstylecard"> 
             
@@ -48,7 +49,7 @@
             var tester = document.createElement("br") 
             document.body.append(document.getElementById("questionsForUser").innerHTML = "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>");
             document.getElementById("questionsForUser").innerHTML = "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>"
-            
+           
         })
             
             // var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
@@ -64,7 +65,7 @@
     //     })
     // })
     </script>
-   
+
 </body>
 
 </html>

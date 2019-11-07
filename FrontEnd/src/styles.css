@@ -7,13 +7,16 @@
   z-index:1;
   top: 0;
   left:0;
-  background-color:rgba(40,232,223,.75);
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(36, 206, 197) 100%);
+  /* background-color:rgba(40,232,223,.75); */
 }
 h1{
   font-family: 'Comfortaa';
   letter-spacing: 6px;
   font-size: 70px;
-  color: rgb(255, 255, 255);  
+  color: rgb(255, 255, 255); 
+  text-shadow: 5px 1px 1px teal;
 }
 hr {
   box-shadow: 3px 3px 3px rgb(29, 119, 119); 
@@ -27,10 +30,12 @@ hr {
 }
 body {
   background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(40,232,223,1) 100%); 
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(36, 206, 197) 100%); 
   background-attachment: fixed;
   background-size: cover;
   text-align: center;
+  
+  
 }
 button {
   margin: 20px;
@@ -48,16 +53,17 @@ a{
   font-size: 20px;
 }
 #navImg {
-  width: 170px;
-  background-color:rgba(40,232,223,1);
+  width: 130px;
+  padding-bottom: 40px;
 }
 #loginImg {
   width: 400px;
   margin: auto;
-  padding-top: 8px;
+  padding-top: 20px;
 }
 #loginCard {
   margin-top: 10%;
+  margin-bottom: 10%;
 }
 .reply {
   font-size: 15px;
@@ -71,6 +77,30 @@ label {
   font-style: unset;
 }
 #userPage {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#questionBox {
+  text-align: center;
+  border: solid lightgray 3px;
+  border-radius: 10px;
+  background-color: white;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  
+}
+#answerCollection, #questionCollection {
+  text-align: center;
+  border: solid lightgray 3px;
+  border-radius: 10px;
+  background-color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.questionHere, .AnswerLabel{
+  font-family: 'Comfortaa'; 
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
