@@ -5,15 +5,11 @@ import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
 import { GetSpecificQ } from './project.js'
 import { PostAnswer } from './project.js'
-import { MeetUp } from './project.js'
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-// console.log(window.localStorage.getItem('jsonToken'));
-// console.log(window.localStorage.getItem('specificQuestion'));
-// console.log(window.localStorage.getItem('userPage'));
 
 $(document).ready(function () {
     getQuestions();
@@ -22,25 +18,33 @@ $(document).ready(function () {
         event.preventDefault();
         GetUsers();
     })
-    
+
     $("#questionPost").submit(function (event) {
-        var questionDescription = $("#questionInput").val();
-        postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
+        if (window.localStorage.getItem('jsonToken') == null) {
+            event.preventDefault();
+            window.location.href = "/login.html"
+            alert("you have to be logged in to do this.")
+
+        }
+        else {
+            var questionDescription = $("#questionInput").val();
+            postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
+        }
+
     });
 
 
     $("#answerPost").submit(function (event) {
         event.preventDefault();
-        if(window.localStorage.getItem('jsonToken') == null)
-        {
+        if (window.localStorage.getItem('jsonToken') == null) {
             alert("you have to be logged in to do this.")
             window.location.href = "/login.html"
         }
-        else{
-            var answerDescription =$("#responseInput").val();
-        postAnswer(answerDescription, window.localStorage.getItem('jsonToken'));
+        else {
+            var answerDescription = $("#responseInput").val();
+            postAnswer(answerDescription, window.localStorage.getItem('jsonToken'));
         }
-        
+
 
     });
 
@@ -54,35 +58,31 @@ $(document).ready(function () {
 
     $("#loginForm").submit(function (event) {
         event.preventDefault();
-        if(window.localStorage.getItem('userPage') != null)
-        {
+        if (window.localStorage.getItem('userPage') != null) {
             alert("Youre already logged in!")
             window.location.href = "/user.html"
         }
-        else{
-            
+        else {
+
             var username = $("#username").val();
             var password = $("#password").val();
-            console.log(username);
-            console.log(password);
-            
             authenticate(username, password);
-            
+
         }
     })
-    
+
     $("#logout").click(function (event) {
         logout();
     })
-    $("#userProfile").click(function(event){
-        if(window.localStorage.getItem('userPage') == null){
+    $("#userProfile").click(function (event) {
+        if (window.localStorage.getItem('userPage') == null) {
             alert("you have to be logged in to go to this page")
             window.location.href = "/login.html"
         }
-        else{
+        else {
             window.location.href = "/user.html"
         }
-        
+
     })
 
 })
@@ -185,7 +185,6 @@ function apiCallPostUser(naMe, last, Uname, passWord) {
 
 function success(response) {
     const user = JSON.parse(response);
-    console.log(user);
     $("body").append("<li>" + user[0].firstName + user[0].questions[0].questionDescription + "</li>");
 }
 // end of new users. we didnt even use this function because we decided not to display users.
@@ -204,34 +203,40 @@ function postedSuccess(response) {
 }
 // end of post question.
 
+
 function postAnswer(answerDescription, jsonToken) {
     apiCallPostAnswer(answerDescription, jsonToken).then(postedASuccess, failurefunction);
 }
+
 function apiCallPostAnswer(answerDescription, jsonToken) {
     var apicall = new PostAnswer();
     let promise = apicall.postAnswer(answerDescription, jsonToken);
     return promise;
 }
+
 function postedASuccess(response) {
     window.localStorage.getItem("specificQuestion");
     var answerResponse = JSON.parse(window.localStorage.getItem("specificQuestion"));
     getSpecificDetails(answerResponse.id);
 }
 function logout() {
-    
+
     localStorage.removeItem('jsonToken');
     localStorage.removeItem('userPage');
-//     location.reload();
 }
+
+
 function gSU() {
 
     gSUApiCall().then(gotuserpage, failurefunction)
 }
+
 function gSUApiCall() {
     var apicall = new GetUserPage();
     let promise = apicall.getSpecificUser(window.localStorage.getItem('jsonToken'));
     return promise;
 }
+
 function gotuserpage(response) {
     window.localStorage.setItem('userPage', response);
     window.location.href = "/user.html"
