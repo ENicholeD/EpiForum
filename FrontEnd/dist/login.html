@@ -7,15 +7,16 @@
 </head>
 
 <body>
-  <h1>EpiForum</h1>
-  <hr>
+    <h1>EpiForum</h1>
+    <hr>
   <div class="container">
     <div class='sidenav'>
       <img
         src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w"
         id="navImg">
+      <a href="search">Search</a><br>
       <a href="index.html">Home</a><br>
-      <a id="logout" href="index.html">Logout</a>
+      <a id="logout">Logout</a>
     </div>
 
     <div class="card" id="loginCard" style="width: 80rem; border-radius:10px;">
@@ -32,29 +33,30 @@
             <label>Password :</label><br>
             <input id="password" type="password" name="password" required><br>
             <button class="btn btn-primary" type="submit" name="button"> Login </button>
-
-          </div>
+            
+          </div>    
         </form>
-        <button id="showpassword" class="btn btn-primary" type="click" name="button" onclick="myFunction()"> Show
-          password </button>
+        <button id="showpassword" class="btn btn-primary" type="click" name="button" onclick="myFunction()"> Show password  </button>
 
         <a href="./register.html" class="btn btn-primary">Register New User</a>
       </div>
     </div>
 
   </div>
-  <script>
-    function myFunction() {
-      var x = document.getElementById("password");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
-    } 
-  </script>
+<script>
+function myFunction() {
+  console.log("it here")
+  var x = document.getElementById("password");
+  console.log(x.type)
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+</script>
 
 
-</body>
+<script type="text/javascript" src="bundle.js"></script></body>
 
 </html>
