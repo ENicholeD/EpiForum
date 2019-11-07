@@ -71,7 +71,7 @@ a{
 .btn {
   background-color: rgb(80, 80, 80);
   border-color: rgb(100, 100, 100);
-  box-shadow: -1px 3px 4px gray;
+  box-shadow: 5px 3px 3px gray;
 }
 label {
   font-style: unset;
@@ -85,7 +85,6 @@ label {
   border: solid lightgray 3px;
   border-radius: 10px;
   background-color: white;
-  margin-top: 10%;
   margin-bottom: 10%;
   
 }
@@ -103,4 +102,7 @@ label {
   font-family: 'Comfortaa'; 
   margin-top: 10px;
   margin-bottom: 10px;
+}
+#questionPost{
+  margin-top: 5%;
 }
