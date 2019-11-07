@@ -184,11 +184,12 @@ export class GetSpecificQ {
   //   getMeetUps(){
   //     return new Promise(function(resolve,reject){
   //       let request = new XMLHttpRequest();
-  //       const url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public&page=20'
+  //       const url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=123+main+street&key=AIzaSyDJRc1PEuI7261VDspYiJryqqhfRXZ4BWs'
 
   //       request.open("GET", url);
   //       // request.setRequestHeader("Content-Type", "application/json")
   //       // request.setRequestHeader("Authorization", "Bearer " + jsonToken)
+        
   //       request.send();
   //       request.onreadystatechange = function(){
   //         if(this.readyState == 4 && this.status == 200){

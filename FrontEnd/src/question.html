@@ -37,7 +37,7 @@
         <button class="btn btn-primary" type="submit" name="button">Send</button>
     </form>
     <h2 class="AnswerLabel">Most Recent Answer</h2>
-    <div id="answerCollection">
+    <div id="questionBox">
         
         <div id="response"></div>
    
@@ -54,9 +54,9 @@
             var newQuestionNode = document.createElement("div")
             newQuestionNode.innerHTML = "@" + answer.user.firstName + "|    " + answer.answerDescription
             document.body.appendChild(linebreak);
-            document.getElementById("answerCollection").append(newQuestionNode)
+            document.getElementById("questionBox").append(newQuestionNode)
             document.body.appendChild(linebreak);
-            document.body.appendChild(line);
+            
         });
 
     </script>
