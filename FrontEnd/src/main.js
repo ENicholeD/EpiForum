@@ -31,8 +31,16 @@ $(document).ready(function () {
 
     $("#answerPost").submit(function(event){
         event.preventDefault();
-        var answerDescription =$("#responseInput").val();
+        if(window.localStorage.getItem('jsonToken') == null)
+        {
+            alert("you have to be logged in to do this.")
+            window.location.href = "/login.html"
+        }
+        else{
+            var answerDescription =$("#responseInput").val();
         postAnswer(answerDescription, window.localStorage.getItem('jsonToken'));
+        }
+        
 
     });
 
@@ -46,15 +54,33 @@ $(document).ready(function () {
     })
     $("#loginForm").submit(function (event) {
         event.preventDefault();
-        var username = $("#username").val();
-        var password = $("#password").val();
-        console.log(username);
-        console.log(password);
-        authenticate(username, password);
-        gSU();
+        if(window.localStorage.getItem('userPage') != null)
+        {
+            alert("Youre already logged in!")
+            window.location.href = "/user.html"
+        }
+        else{
+            var username = $("#username").val();
+            var password = $("#password").val();
+            console.log(username);
+            console.log(password);
+            authenticate(username, password);
+            gSU();
+        }
+       
     })
     $("#logout").click(function (event) {
         logout();
+    })
+    $("#userProfile").click(function(event){
+        if(window.localStorage.getItem('userPage') == null){
+            alert("you have to be logged in to go to this page")
+            window.location.href = "/login.html"
+        }
+        else{
+            window.location.href = "/user.html"
+        }
+        
     })
 
 })
@@ -146,7 +172,7 @@ function detailsuccess(response) {
     
 }
 
-}
+
 // end of get questions api call and response for specific details and getting all of them. we can also dry up the code in the api call.
 
 //Answer
@@ -227,6 +253,7 @@ function logout() {
     console.log("it got here")
     localStorage.removeItem('jsonToken');
     localStorage.removeItem('userPage');
+    location.reload();
 }
 function gSU()
 {
