@@ -11,7 +11,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-
+console.log(window.location.href);
 $(document).ready(function () {
     getQuestions();
    
@@ -28,7 +28,8 @@ $(document).ready(function () {
             alert("you have to be logged in to do this.")
 
         }
-        else {
+        else{
+            event.preventDefault();
             var questionDescription = $("#questionInput").val();
             postQuestion(questionDescription, window.localStorage.getItem('jsonToken'));
         }
@@ -81,8 +82,11 @@ $(document).ready(function () {
             alert("you have to be logged in to go to this page")
             window.location.href = "/login.html"
         }
-        else {
-            window.location.href = "/user.html"
+       
+        else
+        {
+            event.preventDefault();
+            gSU();
         }
 
     })
@@ -201,8 +205,9 @@ function apiCallPostQuestion(questionDescription, jsonToken) {
     return promise;
 }
 function postedSuccess(response) {
-    getQuestions();
+    
     gSU();
+    getQuestions();
 }
 // end of post question.
 

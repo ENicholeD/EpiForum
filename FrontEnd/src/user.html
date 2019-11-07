@@ -18,15 +18,16 @@
         <a href="index.html">Home</a><br>
         <a id="userProfile">My Profile</a>
         <a id="logout" href="login.html">Logout</a>
+        <a id="uName"></a>
     </div>
-
+    <div id="uNameDiv"></div>
     <div class="container">
         <h1 class="username"></h1>
         <div class="card" id="userPage"></div>
         <form action="" id="questionPost">
             <input type="hidden" name="UserID">
-            <label for="">Please enter question</label>
-            <input type="text" name="QuestionDescription" id="questionInput">
+           
+            <input type="text" name="QuestionDescription" id="questionInput" placeholder="Post a question" required>
             <button class="btn btn-primary" type="submit" name="button">Send</button>
         </form>
     </div>
@@ -40,9 +41,11 @@
     <!-- need to fix this so that it actually displays buttons foreach and not this html. -->
     <script>
         var tester = JSON.parse(window.localStorage.getItem("userPage"))
-
+        var newUserNameNode = document.createElement("div");
+        newUserNameNode.innerHTML = "<h2>" + "Hello" + " " +  tester.username + "</h2><hr>"
+        document.getElementById("uNameDiv").appendChild(newUserNameNode);
         tester.questions.forEach(function (description) {
-
+          
             var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
             var newQuestionNode = document.createElement("div")
             newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>"
