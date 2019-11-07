@@ -38,7 +38,11 @@
         <button class="btn btn-primary" type="submit" name="button">Send</button>
     </form>
     <h2 class="AnswerLabel">Most Recent Answer</h2>
+<<<<<<< HEAD
     <div id="answerBox">
+=======
+    <div id="questionBox">
+>>>>>>> append
         
         <div id="response"></div>
    
@@ -53,9 +57,16 @@
             linebreak = document.createElement("br");
             line = document.createElement("hr");
             var newQuestionNode = document.createElement("div")
+<<<<<<< HEAD
             newQuestionNode.setAttribute("id", "testthis")
             newQuestionNode.innerHTML = "@" + answer.user.firstName + "| <span id=fontStyle>" + answer.answerDescription + "</span><hr>"
             document.getElementById("answerBox").append(newQuestionNode)
+=======
+            newQuestionNode.innerHTML = "@" + answer.user.firstName + "|    " + answer.answerDescription
+            document.body.appendChild(linebreak);
+            document.getElementById("questionBox").append(newQuestionNode)
+            document.body.appendChild(linebreak);
+>>>>>>> append
             
         });
 

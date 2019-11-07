@@ -32,16 +32,16 @@
     </div>
     <br>
 
-    <form id="answerPost">
-        <input type="hidden" name="QuestionID">
-        Enter response <input type="text" name="ResponseDescription" id="responseInput" required>
-        <button class="btn btn-primary" type="submit" name="button">Send</button>
-    </form>
-    <h2 class="AnswerLabel">Most Recent Answer</h2>
-    <div id="answerBox">
+    
+    <h2 class="AnswerLabel">Answers</h2>
+    <div id="questionBox">
         
         <div id="response"></div>
-   
+        <form id="answerPost">
+            <input type="hidden" name="QuestionID">
+             <input type="text" name="ResponseDescription" id="responseInput" placeholder="reply " required>
+            <button class="btn btn-primary" type="submit" name="button">Send</button>
+        </form>
     </div>
 
 
@@ -53,9 +53,11 @@
             linebreak = document.createElement("br");
             line = document.createElement("hr");
             var newQuestionNode = document.createElement("div")
-            newQuestionNode.setAttribute("id", "testthis")
-            newQuestionNode.innerHTML = "@" + answer.user.firstName + "| <span id=fontStyle>" + answer.answerDescription + "</span><hr>"
-            document.getElementById("answerBox").append(newQuestionNode)
+            newQuestionNode.setAttribute("id", "testtowork")
+            newQuestionNode.innerHTML = "@" + answer.user.firstName + "|    " + answer.answerDescription
+            document.body.appendChild(linebreak);
+            document.getElementById("questionBox").append(newQuestionNode)
+            document.body.appendChild(linebreak);
             
         });
 
