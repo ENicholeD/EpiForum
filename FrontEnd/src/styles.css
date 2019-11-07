@@ -52,6 +52,9 @@ a{
   letter-spacing: 2px;
   font-size: 20px;
 }
+a:hover, #userProfile:hover, .reply:hover {
+  color: aquamarine;
+}
 #navImg {
   width: 130px;
   padding-bottom: 40px;
@@ -80,7 +83,7 @@ label {
   padding-top: 30px;
   padding-bottom: 30px;
 }
-#questionBox {
+.questionBox {
   text-align: center;
   border: solid lightgray 3px;
   border-radius: 10px;
@@ -88,7 +91,7 @@ label {
   margin-bottom: 10%;
   
 }
-#response, #questionCollection {
+#questionCollection, #answerCollection {
   text-align: center;
   border: solid lightgray 3px;
   border-radius: 10px;
@@ -105,4 +108,11 @@ label {
 }
 #questionPost{
   margin-top: 5%;
+}
+#userProfile{
+  color: white;
+}
+
+.reply:hover {
+  color: lightgray !important;
 }

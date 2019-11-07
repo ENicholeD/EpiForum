@@ -43,33 +43,32 @@
         console.log(JSON.parse(window.localStorage.getItem("userPage")));
         console.log(tester);
 
-        document.getElementById("replacewitherinstylecard").innerHTML = "</h2>" + tester.firstName + "<br>" +  tester.lastName + "</h2>";
-        tester.questions.map(function(element){
-            console.log(element.id);
-            var tester = document.createElement("br") 
-            var divcreator = document.body.createElement("div")
-            divcreator.setAttribute("id", "Div1");
-            var postin = document.getElementById("Div1").innerHTML =  "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>";
-            document.getElementById("questionsForUser").append()
-            document.body.append(document.getElementById("questionsForUser").innerHTML = postin );
+        // document.getElementById("replacewitherinstylecard").innerHTML = "</h2>" + tester.firstName + "<br>" +  tester.lastName + "</h2>";
+        // tester.questions.map(function(element){
+        //     console.log(element.id);
+        //     var tester = document.createElement("br") 
+        //     var divcreator = document.createElement("div")
+        //     divcreator.setAttribute("id", "Div1");
+        //     var postin = document.getElementById("Div1").innerHTML =  "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>";
+        //     document.getElementById("questionsForUser").append()
+        //     document.body.append(document.getElementById("questionsForUser").innerHTML = postin );
             
            
-        })
-            
-            // var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
         // })
-    //     tester.questions.forEach(function (description) {
-    //     var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
-    //     document.body.append(document.getElementById("questionsForUser").innerHTML =   "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
+            
+            
+    
+        tester.questions.forEach(function (description) {
+      
+        var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
+        var newQuestionNode = document.createElement("div")
+        newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>"
+        document.getElementById("questionsForUser").appendChild(newQuestionNode);
         
-    //     // document.getElementById("questionsForUser").innerHTML = ("<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
-    //     $("#" + description.id).click(function () {
-    //         getSpecificDetails(this.id)
-
-    //     })
-    // })
+        // document.getElementById("questionsForUser").innerHTML = ("<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
+       
+    })
     </script>
-
 <script type="text/javascript" src="bundle.js"></script></body>
 
 </html>
