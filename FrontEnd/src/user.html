@@ -31,15 +31,39 @@
         </form>
     </div>
     </div>
-    <div id="replacewitherinstylecard"> </div>
-    <div id="answersforuser"> </div>
-
+    <div id="replacewitherinstylecard"> 
+            
+            </div>
+            <h4>These are the questions that you have had.</h4>
+            <div id="questionsForUser">  </div>
+    
+            <!-- need to fix this so that it actually displays buttons foreach and not this html. -->
     <script>
         var tester = JSON.parse(window.localStorage.getItem("userPage"))
-        document.getElementById("replacewitherinstylecard").innerHTML = "</li>" + "@" + tester.firstName + tester.lastName + "</li>";
-        tester.answers.forEach(function (a) {
-            document.body.append(document.getElementById("answersforuser").innerHTML = a.answerDescription);
+        console.log(JSON.parse(window.localStorage.getItem("userPage")));
+        console.log(tester);
+
+        document.getElementById("replacewitherinstylecard").innerHTML = "</li>" + tester.firstName + "<br>" +  tester.lastName + "</li>";
+        tester.questions.map(function(element){
+            console.log(element.id);
+            var tester = document.createElement("br") 
+            document.body.append(document.getElementById("questionsForUser").innerHTML = "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>");
+            document.getElementById("questionsForUser").innerHTML = "<li>" + element.questionDescription  + "</li>" + "<br>" + "<a class=reply id=" + element.id + ">See Replies</a>"
+           
         })
+            
+            // var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
+        // })
+    //     tester.questions.forEach(function (description) {
+    //     var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
+    //     document.body.append(document.getElementById("questionsForUser").innerHTML =   "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
+        
+    //     // document.getElementById("questionsForUser").innerHTML = ("<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>");
+    //     $("#" + description.id).click(function () {
+    //         getSpecificDetails(this.id)
+
+    //     })
+    // })
     </script>
 
 </body>
