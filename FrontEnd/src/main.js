@@ -11,9 +11,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
-console.log(window.localStorage.getItem('jsonToken'));
-console.log(window.localStorage.getItem('specificQuestion'));
-console.log(window.localStorage.getItem('userPage'));
+// console.log(window.localStorage.getItem('jsonToken'));
+// console.log(window.localStorage.getItem('specificQuestion'));
+// console.log(window.localStorage.getItem('userPage'));
 
 $(document).ready(function () {
     getQuestions();
@@ -60,12 +60,14 @@ $(document).ready(function () {
             window.location.href = "/user.html"
         }
         else{
+            
             var username = $("#username").val();
             var password = $("#password").val();
             console.log(username);
             console.log(password);
+            
             authenticate(username, password);
-            gSU();
+            
         }
     })
     
@@ -102,6 +104,7 @@ function loginsucces(response) {
     var responsePare = JSON.parse(response);
     var jsonToken = responsePare.token;
     window.localStorage.setItem("jsonToken", responsePare.token);
+    gSU();
 
 }
 // only failure function

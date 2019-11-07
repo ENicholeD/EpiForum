@@ -35,17 +35,30 @@
             <input id="username" type="text" name="username" required><br>
             <br>
             <label>Password :</label><br>
-            <input id="password" type="text" name="password" required><br>
+            <input id="password" type="password" name="password" required><br>
             <button class="btn btn-primary" type="submit" name="button"> Login </button>
+            
           </div>    
         </form>
+        <button id="showpassword" class="btn btn-primary" type="click" name="button" onclick="myFunction()"> Show password  </button>
 
         <a href="./register.html" class="btn btn-primary">Register New User</a>
       </div>
     </div>
 
   </div>
-
+<script>
+function myFunction() {
+  console.log("it here")
+  var x = document.getElementById("password");
+  console.log(x.type)
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+</script>
 
 
 <script type="text/javascript" src="bundle.js"></script></body>
