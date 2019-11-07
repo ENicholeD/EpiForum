@@ -1,10 +1,11 @@
-import { AllUsers, GetUserPage } from './project.js'
+import { AllUsers, GetUserPage, MeetUp } from './project.js'
 import { PostQuestion } from './project.js'
 import { PostUser } from './project.js'
 import { AllQuestions } from './project.js'
 import { AuthenticateUser } from './project.js'
 import { GetSpecificQ } from './project.js'
 import { PostAnswer } from './project.js'
+
 import $ from 'jquery'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,6 +14,7 @@ import './styles.css';
 
 $(document).ready(function () {
     getQuestions();
+   
 
     $("#tester").click(function (event) {
         event.preventDefault();
@@ -200,6 +202,7 @@ function apiCallPostQuestion(questionDescription, jsonToken) {
 }
 function postedSuccess(response) {
     getQuestions();
+    gSU();
 }
 // end of post question.
 
@@ -242,3 +245,17 @@ function gotuserpage(response) {
     window.location.href = "/user.html"
 
 }
+// function gAPI()
+// {
+//     callAPI().then(gSuccess, failurefunction)
+// }
+// function callAPI()
+// {
+//     var apicall = new MeetUp();
+//     let promise = apicall.getMeetUps();
+//     return promise;
+// }
+// function gSuccess(response)
+// {
+//     console.log(response);
+// }

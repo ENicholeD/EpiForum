@@ -6,7 +6,7 @@
 
 ## Description
 
-_A place for Epicodus students to ask and answer questions like a message board._
+_A place for Epicodus students to ask and answer questions like a message board. Epicodus Social Media_
 
 ## Setup/Installation Requirements
 
@@ -20,8 +20,6 @@ _A place for Epicodus students to ask and answer questions like a message board.
 * create account in website
 * log into website
 * click around and ask/answer questions
-* log out
-* close website
 
 
 ## Known Bugs
@@ -30,7 +28,7 @@ No known bugs at this time
 
 ## Support and contact details
 
-_If you run into issues, contact Erin Deuel at end.gaia@gmail.com, Nikhil Batta at ,Carrie Schmid at , or Neha Malhotra at nehamalhotra8899@gmail.com_
+_If you run into issues, contact Erin Deuel at end.gaia@gmail.com, Nikhil Batta at nbatta08@gmail.com ,Carrie Schmid at , or Neha Malhotra at nehamalhotra8899@gmail.com_
 
 ## Technologies Used
 
