@@ -46,7 +46,7 @@
             var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
             var newQuestionNode = document.createElement("div")
             newQuestionNode.setAttribute("id", "testthis")
-            newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>"
+            newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " |" + description.questionDescription + " " + buttonHTML + "</p><hr>"
             document.getElementById("questionsForUser").appendChild(newQuestionNode);
             document.getElementById("answerBox").append(newQuestionNode)
 
