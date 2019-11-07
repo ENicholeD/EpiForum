@@ -12,8 +12,9 @@
     <h1>EpiForum</h1>
     <hr>
     <div class='sidenav'>
-        <img src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w"
-            id="navImg">
+        <a href="index.html"><img
+            src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w"
+            id="navImg"></a>
         <a href="login.html">Login/Sign-up</a><br>
         <a href="index.html">Home</a><br>
         <a id="userProfile">My Profile</a>
@@ -22,7 +23,6 @@
 
     <div class="container">
         <h1 class="username"></h1>
-        <div class="card" id="userPage"></div>
         <form action="" id="questionPost">
             <input type="hidden" name="UserID">
             <label for="">Please enter question</label>
@@ -30,12 +30,12 @@
             <button class="btn btn-primary" type="submit" name="button">Send</button>
         </form>
     </div>
-    </div>
-    <div id="replacewitherinstylecard">
-
-    </div>
+   
+    
     <h4>These are the questions that you have had.</h4>
+    <div id = "answerBox">
     <div id="questionsForUser"> </div>
+    </div>
 
     <!-- need to fix this so that it actually displays buttons foreach and not this html. -->
     <script>
@@ -45,8 +45,10 @@
 
             var buttonHTML = "<a class=reply id=" + description.id + ">Reply</a>"
             var newQuestionNode = document.createElement("div")
-            newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " " + description.questionDescription + " " + buttonHTML + "</p><hr>"
+            newQuestionNode.setAttribute("id", "testthis")
+            newQuestionNode.innerHTML = "<p>" + "@" + tester.username + " |" + description.questionDescription + " " + buttonHTML + "</p><hr>"
             document.getElementById("questionsForUser").appendChild(newQuestionNode);
+            document.getElementById("answerBox").append(newQuestionNode)
 
         })
     </script>
