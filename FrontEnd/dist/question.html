@@ -14,10 +14,11 @@
      <h1>EpiForum</h1>
     <hr>
     <div class='sidenav'>
+        <a href="index.html">
         <img src="https://static1.squarespace.com/static/5524448ee4b0d6f6b83ab9e2/t/57cf3de246c3c4d2933aa57c/1572904787997/?format=1500w"
-            id="navImg">
+            id="navImg"></a>
         <a href="login.html">Login/Sign-up</a><br>
-        <a href="search">Search</a><br>
+        <!-- <a href="search">Search</a><br> -->
         <a href="index.html">Home</a><br>
         <a href="user.html">My Profile</a>
         <a id="logout" href="index.html">Logout</a>
@@ -32,33 +33,37 @@
 </div>
 <br>
 
+
     <form id="answerPost">
         <input type="hidden" name="QuestionID">
         Enter response <input type="text" name="ResponseDescription" id="responseInput" required>
         <button class="btn btn-primary" type="submit" name="button">Send</button>
     </form>
-    <h2 class="AnswerLabel">Most Recent Answer</h2>
-    <div id="answerCollection">
-    <div id="response">
+    
+    
+    <div id="response"> 
 
     </div>
-</div>
 
 
+   
     <script>
         var response = JSON.parse(window.localStorage.getItem('specificQuestion'));
-        document.getElementById("details").innerHTML = "<li>" + response.questionDescription + "</li>";
+        document.getElementById("details").innerHTML =  "<h2>" +response.questionDescription + "</h2>";
 
         response.answers.forEach(function (answer) {
             linebreak = document.createElement("br");
             line = document.createElement("hr");
+            // var div = document.createElement("div");
+            // div.setAttribute("class", "questionBox" );
             document.body.appendChild(linebreak);
-            document.body.append(document.getElementById("response").innerHTML = "@" +answer.user.firstName +"|    " + answer.answerDescription  );
+            document.body.append(document.getElementById("response").innerHTML = "@" +answer.user.firstName + "| " + answer.answerDescription  );
             document.body.appendChild(linebreak);
             document.body.appendChild(line);
         });
 
     </script>
+    
 
 <script type="text/javascript" src="bundle.js"></script></body>
 
